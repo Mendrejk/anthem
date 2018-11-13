@@ -1,14 +1,18 @@
 from winsound import Beep
 from time import sleep
 from math import pow
-#winsound.Beep(300, 1000)
-# sleep(0.5)
-#winsound.Beep(200, 1000)
-strings = [324, 243, 192, 144, 108, 81]
-strings = [x*2 for x in strings]
-base = pow(2, 1/12)
-delay = 500
-bpm = 60
+
+# c d e f g a h
+# step = pow(2, 1/6) (1/12 for eg. a4 to a#4)
+# a4 = 440, so a4 is the 27th sound (?)
+# so it's c1 * step**26 (?)
+# ignore what's above, basically 440hz is the 1st sound on the staff (the one with added line)
+# ... i think
+
+base = pow(2, 1/6)
+bpm = 116
+base_sound = 440
+sounds = [base_sound * base**x for x in range(10)]
 
 
 def to_hz(string, pow):
