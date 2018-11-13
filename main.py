@@ -42,7 +42,7 @@ anthem = [
     (4, "sixteenth_note", 1),  # takt 4
     (4, "quarter_note", 1),
     (3, "quarter_note", 1),
-    (0, "quarter_note,", -1),  # takt 5
+    (0, "quarter_note", -1),  # takt 5
     (3, "eight_note", 1.5),
     (4, "sixteenth_note", 1),
     (5, "quarter_note", 1),
@@ -92,6 +92,7 @@ anthem = [
 for i in anthem:
     value, note, multiplier = i
     if multiplier == -1:
-        sleep(value/1000)
+        print('palenie gumy', value, note, multiplier)
+        sleep(notes[note]/1000)
     else:
         Beep(sounds[value], int(notes[note]*multiplier))
