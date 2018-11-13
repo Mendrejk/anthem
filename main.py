@@ -23,8 +23,6 @@ print(sounds)
 notes = {"full_note": int(quarter_note*4000), "half_note": int(quarter_note*2000), "quarter_note": int(quarter_note*1000),
          "eight_note": int(quarter_note*500), "sixteenth_note": int(quarter_note*250)}
 
-Beep(sounds[3], int(notes["eight_note"]*1.5))
-
 anthem = [
     (3, "eight_note", 1.5),
     (4, "sixteenth_note", 1),
@@ -59,7 +57,7 @@ anthem = [
     (0, "sixteenth_note", 1),  # takt 8
     (2, "quarter_note", 1),
     (1, "quarter_note", 1),
-    (0, "quarter_note", -1),
+    (0, "quarter_note", -1),  # koniec zwrotki
     (2, "quarter_note", 1),
     (2, "quarter_note", 1.5),
     (4, "eight_note", 1),                  # takt9
@@ -92,7 +90,6 @@ anthem = [
 for i in anthem:
     value, note, multiplier = i
     if multiplier == -1:
-        print('palenie gumy', value, note, multiplier)
         sleep(notes[note]/1000)
     else:
         Beep(sounds[value], int(notes[note]*multiplier))
