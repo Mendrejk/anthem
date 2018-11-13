@@ -9,26 +9,18 @@ from math import pow
 # ignore what's above, basically 440hz is the 1st sound on the staff (the one with added line)
 # ... i think
 
-base = pow(2, 1/6)
+base = pow(2, 1/12)
 bpm = 116
-base_sound = 440
-sounds = [base_sound * base**x for x in range(10)]
+base_sound = 261.626
+quarter_note = 0.5
+sounds = [base_sound]
 
+for i in range(1, 11):
+    sounds.append(sounds[i-1] * base)
+sounds = [int(x) for x in sounds[2:]]
+print(sounds)
 
-def to_hz(string, pow):
-    #print(strings[string-1], base, pow, base**pow)
-    return strings[string-1] * base**pow
+notes = {"full_note": int(quarter_note*4000), "half_note": int(quarter_note*2000), "quarter_note": int(quarter_note*1000),
+         "eight_note": int(quarter_note*500), "sixteenth_note": int(quarter_note*250)}
 
-
-def note(string, pow):
-    hz = int(to_hz(string, pow))
-    Beep(hz, delay)
-    print(hz, delay)
-    sleep(0.2)
-
-
-note(4, 4)
-note(3, 0)
-note(3, 2)
-note(3, 2)
-note(3, 2)
+Beep(sounds[3], int(notes["eight_note"]*1.5))
